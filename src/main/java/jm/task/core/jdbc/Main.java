@@ -12,15 +12,16 @@ public class Main {
     public static void main(String[] args) {
         // реализуйте алгоритм здесь
         UserService userService = new UserServiceImpl();
-//        userService.dropUsersTable();
-//        userService.createUsersTable();
-
-//        UserDao userDao = new UserDaoJDBCImpl();
+        userService.createUsersTable();
         userService.saveUser("Lewis", "Hamilton", (byte) 39);
-//        userDao.saveUser("Michael", "Michael", (byte) 49);
-//        userDao.saveUser("Ayrton", "Senna", (byte) 49);
+        userService.saveUser("Michael", "Michael", (byte) 49);
+        userService.saveUser("Ayrton", "Senna", (byte) 29);
+        userService.saveUser("Alain", "Prost", (byte) 34);
         List<User> users = userService.getAllUsers();
         System.out.println(users);
+        userService.removeUserById(4);
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
 
 
 
