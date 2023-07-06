@@ -15,6 +15,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     }
 
+    @Override
     public void createUsersTable() {
         String query = "CREATE TABLE IF NOT EXISTS users (id BIGINT PRIMARY KEY AUTO_INCREMENT, " +
                 "name VARCHAR(30), lastName VARCHAR(30), age TINYINT(127)) ENGINE = InnoDB\n" +
@@ -26,6 +27,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
+    @Override
     public void dropUsersTable() {
         String query = "DROP TABLE IF EXISTS users";
         try (Statement statement = Util.getConnection().createStatement()) {
@@ -35,7 +37,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
-
+    @Override
     public void saveUser(String name, String lastName, byte age) {
         String query = "INSERT INTO users (name, lastName, age) VALUES (?, ?, ?)";
         System.out.println("saveUser");
@@ -52,6 +54,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
+    @Override
     public void removeUserById(long id) {
         String query = "DELETE FROM users WHERE id = ?";
         try (PreparedStatement statement = Util.getConnection().prepareStatement(query)){
@@ -62,6 +65,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
+    @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         String query = "SELECT * FROM users";
@@ -87,6 +91,7 @@ public class UserDaoJDBCImpl implements UserDao {
         return users;
     }
 
+    @Override
     public void cleanUsersTable() {
         String query = "DELETE FROM users";
         try (PreparedStatement statement = Util.getConnection().prepareStatement(query)){
